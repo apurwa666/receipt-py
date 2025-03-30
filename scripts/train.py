@@ -10,21 +10,21 @@ from sklearn.model_selection import train_test_split
 def load_images_from_ubyte(file_path):
     with open(file_path, 'rb') as f:
         
-        magic_number = int.from_bytes(f.read(4), 'big')  # Should be 2051 for images
+        magic_number = int.from_bytes(f.read(4), 'big') 
         num_images = int.from_bytes(f.read(4), 'big')
         rows = int.from_bytes(f.read(4), 'big')
         cols = int.from_bytes(f.read(4), 'big')
 
         
         images = np.frombuffer(f.read(), dtype=np.uint8)
-        images = images.reshape(num_images, rows, cols, 1)  # Reshape to (num_images, rows, cols, channels)
+        images = images.reshape(num_images, rows, cols, 1) 
     return images
 
 # Load labels
 def load_labels_from_ubyte(file_path):
     with open(file_path, 'rb') as f:
-        # Read header information
-        magic_number = int.from_bytes(f.read(4), 'big')  # Should be 2049 for labels
+       
+        magic_number = int.from_bytes(f.read(4), 'big') 
         num_labels = int.from_bytes(f.read(4), 'big')
 
         
@@ -43,7 +43,7 @@ train_images = train_images.astype(np.float32) / 255.0
 test_images = test_images.astype(np.float32) / 255.0
 
 
-num_classes = len(np.unique(train_labels))  # Total number of unique classes
+num_classes = len(np.unique(train_labels)) 
 train_labels = to_categorical(train_labels, num_classes=num_classes)
 test_labels = to_categorical(test_labels, num_classes=num_classes)
 
@@ -57,7 +57,7 @@ print(f"Test images shape: {test_images.shape}")
 
 
 model = Sequential([
-    Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),  # Assuming 28x28 images
+    Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),  
     MaxPooling2D((2, 2)),
     Dropout(0.25),
     Conv2D(64, (3, 3), activation='relu'),
