@@ -19,9 +19,9 @@ def preprocess_character_image(char_img, target_size):
     char_img = char_img / 255.0
     return char_img
 
-# Predict function to detect characters from a segmented image
+# Predict
 def predict_character(char_img):
-    target_size = (28, 28)  # Set based on model input size
+    target_size = (28, 28) 
     img_array = preprocess_character_image(char_img, target_size)
     
     # Make prediction
@@ -53,7 +53,7 @@ def segment_word_to_characters(img_path):
 
 # Main function
 if __name__ == "__main__":
-    img_path = 'C:/Users/apurw/OneDrive/Desktop/receipt_scanner_backend/test images/handword5.jpg'  # Replace with your image file path
+    img_path = 'C:/Users/apurw/OneDrive/Desktop/receipt_scanner_backend/test images/handword5.jpg' 
     
     
     character_images = segment_word_to_characters(img_path)
